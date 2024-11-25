@@ -9,12 +9,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.example.noteapp2.R
 import com.example.noteapp2.databinding.FragmentNoteBinding
+import com.example.noteapp2.ui.adapters.NoteAdapter
 import com.example.noteapp2.utils.PreferenceHelper
 
 
 class NoteFragment : Fragment() {
 
     private lateinit var binding:FragmentNoteBinding
+    private val noteAdapter = NoteAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,26 +31,12 @@ class NoteFragment : Fragment() {
         setupListeners()
     }
 
-    private fun setupListeners()  = with(binding) {
-        val sharedPreferences =  PreferenceHelper()
-        sharedPreferences.unit(requireContext())
-//       btnSave.setOnClickListener{
-//            val et:String = etText.text.toString()
-//           sharedPreferences.text = et
-//            txtMain.text = et
-//        }
-//        txtMain.text = sharedPreferences.text
-//
-//        btnAction.setOnClickListener{
-//            findNavController().navigate(R.id.action_noteFragment_to_noteDetailFragment,null,
-////                navOptions  {
-////                   anim{
-////                       enter = R.anim.slide_right
-////                       exit = R.anim.slide_out_right
-////                   }
-////                }
-//            )
-//        }
+
+
+    private fun setupListeners() {
+        binding.btnAdd.setOnClickListener{
+            findNavController().navigate(R.id.action_noteFragment_to_noteDetailFragment)
+        }
     }
 
 }
