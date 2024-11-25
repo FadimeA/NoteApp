@@ -9,6 +9,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.noteapp2.R
 import com.example.noteapp2.databinding.FragmentOnBoardBinding
 import com.example.noteapp2.ui.adapters.OnBoardAdapter
+import com.google.android.material.tabs.TabLayoutMediator
 
 class OnBoardFragment : Fragment() {
     private lateinit var binding: FragmentOnBoardBinding
@@ -28,8 +29,10 @@ class OnBoardFragment : Fragment() {
         setupListeners()
     }
 
+
     private fun initialize() {
         binding.viewPager2.adapter = OnBoardAdapter(this)
+        binding.dotsIndicator.attachTo(binding.viewPager2)
     }
 
     private fun setupListeners() = with(binding.viewPager2) {
@@ -38,8 +41,11 @@ class OnBoardFragment : Fragment() {
                 super.onPageSelected(position)
                 if (position == 2) {
                     binding.txtSkip.visibility = View.GONE
+
+
                 } else {
                     binding.txtSkip.visibility = View.VISIBLE
+
                     binding.txtSkip.setOnClickListener {
                         if (currentItem < 3) {
                             setCurrentItem(currentItem + 2, true)
@@ -51,4 +57,5 @@ class OnBoardFragment : Fragment() {
         })
 
     }
+
 }

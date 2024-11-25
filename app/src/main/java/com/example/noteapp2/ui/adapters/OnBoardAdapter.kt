@@ -17,6 +17,7 @@ class OnBoardAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
         OnBoardPagerFragment().apply {
             arguments = Bundle().apply {
                 putInt(ARG_ONBOARD_POSITION, position)
+
             }
         }
 }

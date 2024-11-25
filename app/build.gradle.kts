@@ -50,4 +50,5 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("com.airbnb.android:lottie:6.6.0")
+    implementation("com.tbuonomo:dotsindicator:5.0")
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+
     <TextView
         android:id="@+id/txt_skip"
         android:layout_width="wrap_content"
@@ -21,6 +23,21 @@
         android:text="Пропустить"
         android:textColor="#D88B02"
         android:textSize="16sp" />
+
+    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+
+        android:id="@+id/dots_indicator"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginTop="578dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:dotsColor="#C4C4C4"
+        app:dotsCornerRadius="8dp"
+        app:dotsSize="16dp"
+        app:dotsSpacing="6dp"
+        app:dotsWidthFactor="1"
+        app:progressMode="true"
+        app:selectedDotColor="#D88B02" />
 
 
 </FrameLayout>
