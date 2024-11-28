@@ -8,69 +8,59 @@
     tools:context=".ui.activity.MainActivity">
 
 
-    <androidx.appcompat.widget.Toolbar
+    <Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#252525"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/btn_menu"
-            android:layout_width="18dp"
-            android:layout_height="12dp"
-            android:layout_marginTop="19dp"
-            android:src="@drawable/ic_menu" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="start"
+            android:background="@drawable/baseline_menu_24" />
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Все заметки"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:fontFamily="@font/poppins"/>
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/poppins"
+            android:paddingVertical="13dp"
+            android:text="@string/all_notes"
+            android:textColor="@color/white"
+            android:textFontWeight="600"
+            android:textSize="16sp" />
 
-        <ImageButton
-            android:id="@+id/btn_grid"
-            android:layout_width="18dp"
-            android:layout_height="16dp"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnToggleLayout"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="end"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="15dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_grid" />
-    </androidx.appcompat.widget.Toolbar>
+            android:layout_marginEnd="13dp"
+            android:background="@drawable/baseline_dashboard_24" />
+    </Toolbar>
 
-    <EditText
-        android:id="@+id/search"
-        android:layout_width="match_parent"
+    <SearchView
+        android:layout_marginTop="16dp"
+        android:id="@+id/search_view"
+        android:iconifiedByDefault="false"
+        android:queryHint="Поиск заметок"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        android:hint="Поиск"
-        android:textColorHint="#80FFFFFF"
-        android:background="@drawable/search_bg"
-        app:layout_constraintBottom_toTopOf="@id/rv_note"
-        android:paddingHorizontal="20dp"
-        android:paddingVertical="10dp"
-        android:layout_marginVertical="10dp"
         android:layout_marginHorizontal="20dp"
-        android:paddingStart="51dp"
-        android:foreground="@drawable/baseline_search_24"
-        android:foregroundGravity="center_vertical"
-        android:foregroundTint="#B3FFFFFF"
-        />
+        android:background="@drawable/background_search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_note"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search" />
+        app:layout_constraintTop_toBottomOf="@id/search_view" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_add"
