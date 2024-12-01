@@ -6,15 +6,32 @@ import android.content.SharedPreferences
 class PreferenceHelper {
     private lateinit var sharedPreference:SharedPreferences
 
-    fun unit (context: Context){
+    fun init (context: Context){
         sharedPreference = context.getSharedPreferences("shared",Context.MODE_PRIVATE)
     }
+    var text: Boolean
+        get() = sharedPreference.getBoolean("text", false)
+        set(value) = sharedPreference.edit().putBoolean("text", value).apply()
 
-//    var text : String?
-//        get() = sharedPreference.getString("text","")
-//        set(value:String?) = sharedPreference.edit()?.putString("text",value)!!.apply()
+    fun setOnBoardingCompleted(b: Boolean) {
+        sharedPreference.edit().putBoolean("onBoardingCompleted", text).apply()
+    }
 
-    var isOnBoardShown: Boolean
-        get() = sharedPreference.getBoolean ("isOnBoardShown",false)
-        set(value: Boolean) = sharedPreference.edit().putBoolean ("isOnBoardShown", value).apply()
+    fun isOnBoardingCompleted(): Boolean {
+        return sharedPreference.getBoolean("onBoardingCompleted", true)
+    }
+
+    fun isLinearLayout(): Boolean {
+        return sharedPreference.getBoolean("isLinearLayout", true)
+    }
+    fun setLinearLayout(isLinearLayout: Boolean) {
+        sharedPreference.edit().putBoolean("isLinearLayout", isLinearLayout).apply()
+    }
+    fun setRegistered(isRegistered: Boolean) {
+        sharedPreference.edit().putBoolean("isRegistered", isRegistered).apply()
+    }
+    fun isRegistered(): Boolean {
+        return sharedPreference.getBoolean("isRegistered", false)
+    }
+
 }

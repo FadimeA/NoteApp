@@ -15,13 +15,15 @@ import com.example.noteapp2.data.models.NoteModel
 import com.example.noteapp2.databinding.FragmentNoteBinding
 import com.example.noteapp2.interfaces.OnClickItem
 import com.example.noteapp2.ui.adapters.NoteAdapter
+import com.example.noteapp2.utils.PreferenceHelper
 
 
 class NoteFragment : Fragment(), OnClickItem {
 
     private lateinit var binding: FragmentNoteBinding
     private val noteAdapter = NoteAdapter(this, this)
-    private var isGridLayout = false
+
+    private val sharedPreference = PreferenceHelper()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,20 +38,24 @@ class NoteFragment : Fragment(), OnClickItem {
         setupListeners()
         getData()
         initialize()
+
+        sharedPreference.init(requireContext())
+
+
+        val isLinearLayout = sharedPreference.isLinearLayout()
+        setRecyclerViewLayout(isLinearLayout)
+
     }
 
-    private fun initialize() {
-        setRecyclerViewLayoutManager()
+    private fun initialize(){
         binding.rvNote.adapter = noteAdapter
     }
 
-    private fun setRecyclerViewLayoutManager() {
-        if (isGridLayout) {
-
-            binding.rvNote.layoutManager = GridLayoutManager(requireContext(), 2)
+    private fun setRecyclerViewLayout(isLinearLayout: Boolean) {
+        binding.rvNote.layoutManager = if (isLinearLayout) {
+            LinearLayoutManager(requireContext())
         } else {
-
-            binding.rvNote.layoutManager = LinearLayoutManager(requireContext())
+            GridLayoutManager(requireContext(), 2)
         }
     }
 
@@ -60,8 +66,12 @@ class NoteFragment : Fragment(), OnClickItem {
 
 
         binding.btnToggleLayout.setOnClickListener {
-            isGridLayout = !isGridLayout
-            setRecyclerViewLayoutManager()
+
+                val isCurrentlyLinear = binding.rvNote.layoutManager is LinearLayoutManager
+                setRecyclerViewLayout(!isCurrentlyLinear)
+
+                sharedPreference.setLinearLayout(!isCurrentlyLinear)
+
         }
     }
 

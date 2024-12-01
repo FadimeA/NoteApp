@@ -65,10 +65,10 @@ class OnBoardPagerFragment : Fragment() {
 
     private fun setupListeners() = with(binding) {
         val sharedPreferences = PreferenceHelper()
-        sharedPreferences.unit(requireContext())
+        sharedPreferences.init(requireContext())
         buttonStart.setOnClickListener {
-            sharedPreferences.isOnBoardShown = true
-            findNavController().navigate(R.id.action_onBoardFragment_to_noteFragment)
+            sharedPreferences.setOnBoardingCompleted(true)
+            findNavController().navigate(R.id.action_onBoardFragment_to_signUpFragment)
         }
 
 
