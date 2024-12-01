@@ -90,7 +90,7 @@ class NoteFragment : Fragment(), OnClickItem {
     }
 
     override fun onClick(noteModel: NoteModel) {
-        val action = NoteFragmentDirections.action_noteFragment_to_noteDetailFragment(noteModel.id)
+        val action = NoteFragmentDirections.actionNoteFragmentToNoteDetailFragment(noteModel.id)
         findNavController().navigate(action)
     }
 }
